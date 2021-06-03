@@ -1,0 +1,51 @@
+<div class="container-fluid headContainer">
+  <div>
+    <span class="h4">Employees</span>
+  </div>
+  <div>
+    <button (click)="handleAddNewClick()" class="btn btn-outline-dark rounded-pill btn-employee-new">
+      <i class="bi bi-plus-lg"></i>
+      Add new
+    </button>
+  </div>
+  
+</div>
+<div class="body-container">
+  <div class="left-panel">
+    <div class="employee-card" *ngFor="let employee of employees" [ngClass]="employee.id === selectedEmployee ? ' employee-card-active': '' "
+         (click)="handleEmployeeCardClick(employee.id)">
+      <div class="employee-card-info">
+        <p class="employee-card-info-title">{{employee.fullName}}</p>
+        <p class="employee-card-info-description">{{employee.position.positionName}}</p>
+      </div>
+      <div  (click)="handleDeleteClick(employee.id)" class="employee-card-icon btn">
+        <i class="bi bi-trash-fill"></i>
+      </div>
+    </div>
+  </div>
+  <div class="right-body">
+    <p style="font-weight:bolder;"><u>Personal Information</u></p>
+    <div class="container-fluid">
+      <label style="font-weight:bold;" class="col-md-4" for="name">Full Name</label>
+      <input [(ngModel)]="fullName" class="col-md-8" id="name" type="text" />
+    </div>
+    <div>
+      <label style="font-weight:bold;" class="col-md-4" for="address">Address</label>
+      <input [(ngModel)]="address" class="col-md-8" id="address" type="text" />
+    </div>
+
+    <div>
+      <label style="font-weight:bold;" class="col-md-4" for="phone">Phone Number</label>
+      <input [(ngModel)]="phoneNumber" class="col-md-8" id="phone" type="text" />
+    </div>
+    <div>
+      <label style="font-weight:bold;" class="col-md-4" for="position">Position</label>
+      <select [(ngModel)]="position" class="col-md-8 form-select">
+        <option *ngFor="let position of positions" [ngValue]="position.id">{{position.positionName}}</option>
+      </select>
+    </div>
+
+    <button (click)="handleSaveClick()" class="btn btn-light rounded employee-save">Save</button>
+
+  </div>
+</div>
